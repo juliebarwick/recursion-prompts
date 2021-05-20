@@ -31,21 +31,58 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+
+  // Base case: the current array is empty
+  if (!array.length) {
+    return 0;
+  }
+
+  var current = array[0];
+  if (Array.isArray(current)) {
+    return arraySum(current) + arraySum(array.slice(1));
+  } else {
+    return current + arraySum(array.slice(1));
+  }
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n === 0) {
+    return true;
+  } else if (n === 1) {
+    return false
+  } else if (n < 0) {
+    return isEven(-n);
+  } else {
+    return isEven(n - 2);
+  }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0;
+  }
+  if (n < 0) {
+    return (n + 1) + sumBelow(n + 1);
+  } else {
+    return (n - 1) + sumBelow(n - 1);
+  }
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (x === y - 1 || x - 1 === y || x === y) {
+    return [];
+  }
+  if (x < y) {
+    return [x + 1].concat(range(x + 1, y));
+  } else if (x > y) {
+    return [x - 1].concat(range(x - 1, y));
+  }
 };
 
 // 7. Compute the exponent of a number.
@@ -199,6 +236,7 @@ var nestedEvenSum = function(obj) {
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(array) {
+  // if (array)
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
