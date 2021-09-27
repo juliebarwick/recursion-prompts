@@ -180,6 +180,16 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+  if (y < 0) {
+    y = -y;
+    x = -x;
+  }
+
+  if (y === 0) {
+    return 0;
+  }
+
+  return multiply(x, y - 1) + x;
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
